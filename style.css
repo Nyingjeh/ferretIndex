@@ -1,0 +1,203 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --text: #f3eee6;
+  --muted: rgba(243, 238, 230, 0.6);
+  --gold: #d8b77a;
+  --line: rgba(216, 183, 122, 0.45);
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 1.25rem 2.5rem;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  color: var(--text);
+  background: linear-gradient(135deg, #0b0e22, #2a3478, #6a2c78, #1d5a7a, #0b0e22);
+  background-size: 400% 400%;
+  animation: gradient 12s ease infinite;
+}
+
+@keyframes gradient {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.card {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 520px;
+  padding: 3.25rem 2rem 2.5rem;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+}
+
+.halo {
+  width: 140px;
+  height: 140px;
+  margin: 0 auto;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #2a2f52;
+  box-shadow:
+    0 0 0 3px #1c2447,
+    0 0 0 4px var(--gold),
+    0 0 40px rgba(216, 183, 122, 0.35);
+}
+
+.halo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.name {
+  margin: 2.25rem 0 2.25rem;
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 400;
+  font-size: clamp(2.6rem, 11vw, 3.4rem);
+  letter-spacing: 0.06em;
+  line-height: 1;
+}
+
+.links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.link {
+  position: relative;
+  display: block;
+  padding: 1.05rem 1.5rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-size: 1.05rem;
+  letter-spacing: 0.03em;
+  color: var(--text);
+  text-decoration: none;
+  background: rgba(255, 255, 255, 0.05);
+  transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.link:hover,
+.link:focus-visible {
+  transform: translateY(-2px);
+  color: #14172e;
+  background: var(--gold);
+  border-color: var(--gold);
+}
+
+.link:focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: 4px;
+}
+
+.link.soon {
+  display: grid;
+  cursor: default;
+}
+
+.soon > span {
+  grid-area: 1 / 1;
+  transition: opacity 0.2s ease;
+}
+
+.soon .hint {
+  opacity: 0;
+  font-style: italic;
+  color: var(--gold);
+}
+
+.link.soon:hover,
+.link.soon:focus-visible {
+  transform: none;
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.05);
+  border-color: var(--line);
+}
+
+.soon:hover .label,
+.soon:focus-visible .label { opacity: 0; }
+
+.soon:hover .hint,
+.soon:focus-visible .hint { opacity: 1; }
+
+footer {
+  margin-top: 2.25rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.ferret {
+  fill: none;
+  stroke: var(--gold);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  color: var(--gold);
+  overflow: visible;
+}
+
+.ferret-lounge {
+  position: absolute;
+  bottom: calc(100% - 4px);
+  right: 12%;
+  width: 120px;
+  height: 41px;
+}
+
+.bg-ferrets {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.bg-ferrets .ferret {
+  position: absolute;
+  width: 110px;
+  height: 42px;
+  opacity: 0.4;
+  transform: rotate(var(--r)) scaleX(var(--s, 1));
+  animation: drift 9s ease-in-out infinite;
+}
+
+.f1 { top: 8%;  left: 6%;   --r: -12deg; }
+.f2 { top: 22%; right: 7%;  --r: 18deg;  width: 80px;  animation-delay: -2s; }
+.f3 { top: 58%; left: 3%;   --r: 8deg;   width: 140px; animation-delay: -5s; }
+.f4 { bottom: 10%; right: 9%; --r: -20deg; animation-delay: -3s; }
+.f5 { bottom: 4%; left: 38%;  --r: 4deg;  width: 70px;  animation-delay: -7s; }
+.f6 { top: 3%;  left: 42%;  --r: 10deg;  width: 90px;  --s: -1; animation-delay: -1s; }
+.f7 { top: 40%; right: 3%;  --r: -8deg;  width: 120px; --s: -1; animation-delay: -4s; }
+.f8 { top: 35%; left: 14%;  --r: 22deg;  width: 75px;  animation-delay: -6s; }
+.f9 { bottom: 28%; left: 8%; --r: -16deg; width: 95px; --s: -1; animation-delay: -8s; }
+.f10 { bottom: 22%; right: 16%; --r: 12deg; width: 85px; animation-delay: -2.5s; }
+.f11 { top: 12%; right: 24%; --r: -6deg; width: 65px; --s: -1; animation-delay: -5.5s; }
+.f12 { top: 72%; right: 30%; --r: 26deg; width: 100px; animation-delay: -3.5s; }
+
+@keyframes drift {
+  50% { transform: translateY(-16px) rotate(var(--r)) scaleX(var(--s, 1)); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body,
+  .link,
+  .soon > span,
+  .ferret { animation: none; transition: none; }
+}
