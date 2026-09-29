@@ -107,6 +107,39 @@ body {
   outline-offset: 4px;
 }
 
+.link-ferret {
+  position: absolute;
+  top: 50%;
+  right: 0.8rem;
+  width: 68px;
+  height: 24px;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-50%) scale(0.85);
+  transition: opacity 0.2s ease, transform 0.2s ease, color 0.2s ease, stroke 0.2s ease;
+}
+
+.link:hover .link-ferret,
+.link:focus-visible .link-ferret {
+  opacity: 1;
+  transform: translateY(-50%) scale(1);
+  color: #14172e;
+  stroke: #14172e;
+}
+
+.link.soon:hover .link-ferret,
+.link.soon:focus-visible .link-ferret {
+  color: var(--gold);
+  stroke: var(--gold);
+}
+
+@media (max-width: 380px) {
+  .link-ferret {
+    width: 54px;
+    height: 19px;
+  }
+}
+
 .link.soon {
   display: grid;
   cursor: default;
